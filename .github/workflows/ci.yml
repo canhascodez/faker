@@ -1,25 +1,25 @@
 name: Tests
 on:
-  schedule:
-  - cron: '0 10 1 * *'
   pull_request:
-    branches:
-      - master
+    branches: [main]
   push:
-    branches:
-      - master
+    branches: [main]
 jobs:
   build:
-    name: Test
+    name: Test suite
     runs-on: ubuntu-latest
 
     container:
       image: crystallang/crystal:latest
 
     steps:
-    - uses: actions/checkout@v2
-    - run: crystal --version
-    - run: shards install
-    - run: crystal spec
-    - run: crystal run examples/test.cr
-    - run: crystal run examples/test2.cr
+      - name : Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: shards install
+      - name: Run tests
+        run: crystal spec
+      - name: Run examples
+        run: |
+          crystal run examples/test.cr
+          crystal run examples/test2.cr
