@@ -1,9 +1,9 @@
 # faker
 
-[![Build Status](https://travis-ci.org/askn/faker.svg?branch=master)](https://travis-ci.org/askn/faker)
+[![Tests](https://github.com/canhascodez/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/canhascodez/faker/actions/workflows/ci.yml)
 
 This shard is a port of [Faker](https://github.com/stympy/faker) gem that generates fake data.
-
+Forked from @askn
 
 ## Installation
 
@@ -12,7 +12,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   faker:
-    github: askn/faker
+    github: canhascodez/faker
 ```
 
 ## Usage
