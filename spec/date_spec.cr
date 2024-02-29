@@ -53,8 +53,13 @@ describe Faker::Date do
       max = 90
 
       t = Time.utc
-      birthday_min = Time.utc(t.year - max, t.month, t.day)
-      birthday_max = Time.utc(t.year - min, t.month, t.day)
+      # the original code had a leap year bug, but only in the test case
+      # the issue is that if it's February 29th and it's trying to pick a date 40 years ago, the date generated will be
+      # February 29th, 40 years ago, which is not a valid date. The fix is to change the day to 28 if it's a leap year
+      # there's other ways to work around this but there's no real need to test every day
+      day = t.month == 2 && t.day == 29 ? 28 : t.day
+      birthday_min = Time.utc(t.year - max, t.month, day)
+      birthday_max = Time.utc(t.year - min, t.month, day)
 
       100.times do
         birthday = Faker::Date.birthday(min_age: min, max_age: max)
