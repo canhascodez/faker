@@ -62,7 +62,7 @@ module Faker
     private def self.birthday_date(date : Time, age : Int32) : Time
       year = date.year - age
       day =
-        if date.day == 29 && date.month == 2 && Time.leap_year?(year)
+        if date.day == 29 && date.month == 2 && !Time.leap_year?(year)
           28
         else
           date.day
